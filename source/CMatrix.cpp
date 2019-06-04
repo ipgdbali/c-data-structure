@@ -1,30 +1,28 @@
 #include "CMatrix.hpp"
-#include <cstdlib>
 
 using namespace std;
 
 template <typename T>
-CMatrix<T>::CMatrix(int row,int col)
+CMatrix<T>::CMatrix(const int row,const int col)
 {
-	this->m_Row = row;
-	this->m_Col = col;
+}
 
-	m_Matrix = (T**)malloc(sizeof(T*) * row);
 
-	for(int li = 0;li < row;li++)
-		m_Matrix[li] = malloc(sizeof(T) * col);
+template <typename T>
+CMatrix<T>::CMatrix(const CMatrix & mat) : CMatrix(mat.m_Row,mat.m_Col)
+{
+	/// Copy Value
+	for(int li = 0; li < mat.m_Row;li++)
+		for(int lj = 0;lj < mat.m_Col;lj++)
+			this->m_Matrix[li][lj] = mat.m_Matrix[li][lj];
 }
 
 template <typename T>
 CMatrix<T>::~CMatrix()
 {
 	for(int li = 0;li < this->m_Row;li++)
-	{
-		free(m_Matrix[li]);
-		m_Matrix[li] = 0;
-	}
-	free(m_Matrix);
-	m_Matrix = 0;
+		delete [](m_Matrix[li]);
+	delete []m_Matrix;
 }
 
 template <typename T>
@@ -36,5 +34,7 @@ bool CMatrix<T>::isSquare() const
 template <typename T>
 CMatrix<T> getIndentity(int dimension)
 {
-	CMatrix matrix(dimension,dimension);
+	CMatrix<T> matrix(dimension,dimension);
+	for(int li = 0;li<dimension;li++)
+		matrix.m_Matrix[li][li] = (T)1;
 }

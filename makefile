@@ -1,2 +1,2 @@
-CMatrix.o : src/CMatrix.cpp
-	gcc -Iheader -c src/CMatrix.cpp
+CMatrix.o : source/CMatrix.cpp
+	g++ -Iheader -c source/CMatrix.cpp
