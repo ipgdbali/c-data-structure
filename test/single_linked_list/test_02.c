@@ -13,7 +13,7 @@ int main(int argc,char * argv[])
 	{
 		int * tmp = (int *) malloc(sizeof(int));
 		(*tmp) = li + 1;
-		sll_append_head(pSLL,(void*)tmp);
+		sll_append_tail(pSLL,(void*)tmp);
 	}
 
 	pCursor = sll_iterator_init(pSLL);

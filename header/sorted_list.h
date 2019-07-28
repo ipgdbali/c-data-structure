@@ -3,17 +3,17 @@
 
 #include "single_linked_list.h"
 
-int compare(void * left,void * right)
+struct tSortedList
 {
-	return 0;
-}
+	struct tSingleLinkedList	*	pLinkedList;
+	struct tSLLIterator			*	pIter;
+	int (*compare_func)(void *,void*);
+};
 
-extern struct tSortedList * sl_init(bool unique,(*cmp)(void *,void*));
+extern struct tSortedList * sl_init(bool,int (*)(void *,void*));
+extern bool sl_push(struct tSortedList * ,void *);
+extern struct tSLLIterator * sl_get_head_iterator(struct tSortedList *);
 
-extern bool sl_push(struct tSortedList * pSortedList,const char * string);
-
-extern struct tCursor * sl_get_head_iterable(struct tSortedList * pSortedList);
-
-extern void sl_destroy(struct tSortedList * pSortedList);
+extern void sl_destroy(struct tSortedList *);
 
 #endif

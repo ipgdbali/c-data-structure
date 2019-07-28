@@ -4,17 +4,19 @@ struct tSingleLinkedList * sll_init()
 {
 	struct tSingleLinkedList * sll;
 	sll = (struct tSingleLinkedList *)malloc(sizeof(struct tSingleLinkedList));
+	sll->nNodeCount = 0;
 	sll->pHeadNode = NULL;
+	sll->pTailNode = NULL;
 	return sll;
 }
 
-void sll_append_tail(struct tSingleLinkedList *pSLL,void * pNodeData)
+void sll_append(struct tSingleLinkedList *pSLL,void * pNodeData)
 {
-	struct tSingleLinkedListNode * pNode;
+	struct tSLLNode * pNode;
 
 	assert(pSLL != NULL);
 
-	pNode = (struct tSingleLinkedListNode *)malloc(sizeof(struct tSingleLinkedListNode));
+	pNode = (struct tSLLNode *)malloc(sizeof(struct tSLLNode));
 	pNode->pNodeData = pNodeData;
 	pNode->pNextNode = NULL;
 	if(pSLL->pTailNode != NULL)
@@ -22,26 +24,51 @@ void sll_append_tail(struct tSingleLinkedList *pSLL,void * pNodeData)
 	else
 		pSLL->pHeadNode = pNode;
 	pSLL->pTailNode = pNode;
+	pSLL->nNodeCount++;
 }
 
-void sll_append_head(struct tSingleLinkedList *pSLL,void *pNodeData)
+void sll_prepend(struct tSingleLinkedList *pSLL,void *pNodeData)
 {
-	struct tSingleLinkedListNode * pNode;
+	struct tSLLNode * pNode;
 
 	assert(pSLL != NULL);
 
-	pNode = (struct tSingleLinkedListNode *)malloc(sizeof(struct tSingleLinkedListNode));
+	pNode = (struct tSLLNode *)malloc(sizeof(struct tSLLNode));
 	pNode->pNodeData = pNodeData;
 	if(pSLL->pHeadNode != NULL)
 		pNode->pNextNode = pSLL->pHeadNode;
 	else
 		pSLL->pTailNode = pNode;
 	pSLL->pHeadNode = pNode;
+	pSLL->nNodeCount++;
+}
+
+void * sll_pop_head(struct tSingleLinkedList *pSLL)
+{
+	void * pNodeData;
+	struct tSLLNode * pNode;
+
+	pNode = pSLL->pHeadNode;
+	pNodeData = pNode->pNodeData;
+	pSLL->pHeadNode = pSLL->pHeadNode->pNextNode;
+	return pNodeData;
+}
+
+void * sll_peek_head(struct tSingleLinkedList * pSLL)
+{
+	return pSLL->pHeadNode->pNodeData;
+}
+
+void * sll_peek_tail(struct tSingleLinkedList * pSLL)
+{
+	return pSLL->pTailNode->pNodeData;
 }
 
 void sll_destroy(struct tSingleLinkedList * pSLL)
 {
-	struct tSingleLinkedListNode *pNode;
+	struct tSLLNode *pNode;
+
+	if(pSLL->pHeadNode != NULL)
 	do
 	{
 		pNode = pSLL->pHeadNode;
@@ -53,63 +80,65 @@ void sll_destroy(struct tSingleLinkedList * pSLL)
 	free(pSLL);
 }
 
-void insert_after_cursor(struct tCursor * pCursor,void * pNodeData)
+void insert_after_iterator(struct tSLLIterator * pSLLIter,void * pNodeData)
 {
-	struct tSingleLinkedListNode * pNode;
+	struct tSLLNode * pNode;
 
-	assert(pCursor != NULL);
+	assert(pSLLIter != NULL);
 
-	pNode = (struct tSingleLinkedListNode *)malloc(sizeof(struct tSingleLinkedListNode));
+	pNode = (struct tSLLNode *)malloc(sizeof(struct tSLLNode));
 	pNode->pNodeData = pNodeData;
-	pNode->pNextNode = pCursor->pNode->pNextNode;
-	pCursor->pNode->pNextNode = pNode;
+	pNode->pNextNode = pSLLIter->pNode->pNextNode;
+	pSLLIter->pNode->pNextNode = pNode;
+
+	//Add Node Count
+	pSLLIter->pSLL->nNodeCount++;
 }
 
-//CURSOR
-struct tCursor * cursor_init(struct tSingleLinkedList * pSLL)
+struct tSLLIterator * sll_iterator_init(struct tSingleLinkedList * pSLL)
 {
-	struct tCursor *pCursor;
+	struct tSLLIterator *pSLLIter;
 
-	pCursor = (struct tCursor *)malloc(sizeof(struct tCursor));
-	pCursor->pSLL = pSLL;
-	pCursor->pNode = pSLL->pHeadNode;
-	return pCursor;
+	pSLLIter = (struct tSLLIterator *)malloc(sizeof(struct tSLLIterator));
+	pSLLIter->pSLL = pSLL;
+	pSLLIter->pNode = pSLL->pHeadNode;
+	return pSLLIter;
 }
 
-struct tCursor * cursor_reset(struct tCursor * pCursor)
+struct tSLLIterator * sll_iterator_reset(struct tSLLIterator * pSLLIter)
 {
-	pCursor->pNode = pCursor->pSLL->pHeadNode;
-	return pCursor;
+	pSLLIter->pNode = pSLLIter->pSLL->pHeadNode;
+	return pSLLIter;
 }
 
-struct tCursor *cursor_next(struct tCursor * pCursor)
+struct tSLLIterator *sll_iterator_next(struct tSLLIterator * pSLLIter)
 {
-	pCursor->pNode = pCursor->pNode->pNextNode;
-	return pCursor;
+	pSLLIter->pNode = pSLLIter->pNode->pNextNode;
+	return pSLLIter;
 }
 
-bool cursor_is_last(struct tCursor * pCursor)
+bool sll_iterator_is_last(struct tSLLIterator * pSLLIter)
 {
-	return (pCursor->pNode == pCursor->pSLL->pTailNode);
+	return (pSLLIter->pNode == pSLLIter->pSLL->pTailNode);
 }
 
-bool cursor_has_end(struct tCursor * pCursor)
+bool sll_iterator_has_end(struct tSLLIterator * pSLLIter)
 {
-	return (pCursor->pNode == NULL);
+	return (pSLLIter->pNode == NULL);
 }
 
-void cursor_set_data(struct tCursor * pCursor,void * pNodeData)
+void sll_iterator_set_data(struct tSLLIterator * pSLLIter,void * pNodeData)
 {
-	pCursor->pNode->pNodeData = pNodeData;
+	pSLLIter->pNode->pNodeData = pNodeData;
 }
 
-void * cursor_get_data(struct tCursor * pCursor)
+void * sll_iterator_get_data(struct tSLLIterator * pSLLIter)
 {
-	return pCursor->pNode->pNodeData;
+	return pSLLIter->pNode->pNodeData;
 }
 
-void cursor_destroy(struct tCursor * pCursor)
+void sll_iterator_destroy(struct tSLLIterator * pSLLIter)
 {
-	free(pCursor);
+	free(pSLLIter);
 }
 

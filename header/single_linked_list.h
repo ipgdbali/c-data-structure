@@ -13,8 +13,9 @@ struct tSLLNode
 
 struct tSingleLinkedList
 {
-	struct tSLLNode * pHeadNode;
-	struct tSLLNode * pTailNode;
+	int					  nNodeCount;
+	struct tSLLNode		* pHeadNode;
+	struct tSLLNode		* pTailNode;
 };
 
 struct tSLLIterator
@@ -25,20 +26,24 @@ struct tSLLIterator
 
 // Linked List Related Functions
 extern struct tSingleLinkedList * sll_init();
-extern void sll_append_tail(struct tSingleLinkedList *pSLL,void * pNodeData);
-extern void sll_append_head(struct tSingleLinkedList *pSLL,void *pNodeData);
-extern void sll_destroy(struct tSingleLinkedList * pSLL);
+extern void sll_append(struct tSingleLinkedList *,void * );
+extern void sll_prepend(struct tSingleLinkedList *,void *);
+extern void * sll_pop_head(struct tSingleLinkedList *);
+extern void * sll_peek_head(struct tSingleLinkedList *);
+extern void * sll_peek_tail(struct tSingleLinkedList *);
+extern void sll_destroy(struct tSingleLinkedList *);
 
-extern void insert_after_cursor(struct tSLLIterator * pIterator,void * pNodeData);
+//cursor
+extern void insert_after_iterator(struct tSLLIterator *,void *);
 
-// Cursor Related Functions
-extern struct tSLLIterator * sll_iterator_init(struct tSingleLinkedList * pSLL);
-extern struct tSLLIterator * sll_iterator_reset(struct tSLLIterator * pIterator);
-extern struct tSLLIterator *sll_iterator_next(struct tSLLIterator * pIterator);
-extern bool sll_iterator_is_last(struct tSLLIterator * pIterator);
-extern bool sll_iterator_has_end(struct tSLLIterator * pIterator);
-extern void sll_iterator_set_data(struct tSLLIterator * pIterator,void * pNodeData);
-extern void * sll_iterator_get_data(struct tSLLIterator * pIterator);
-extern void sll_iterator_destroy(struct tSLLIterator * pIterator);
+// Iterator Related Functions
+extern struct tSLLIterator * sll_iterator_init(struct tSingleLinkedList *);
+extern struct tSLLIterator * sll_iterator_reset(struct tSLLIterator *);
+extern struct tSLLIterator * sll_iterator_next(struct tSLLIterator *);
+extern bool sll_iterator_is_last(struct tSLLIterator *);
+extern bool sll_iterator_has_end(struct tSLLIterator *);
+extern void sll_iterator_set_data(struct tSLLIterator *,void *);
+extern void * sll_iterator_get_data(struct tSLLIterator *);
+extern void sll_iterator_destroy(struct tSLLIterator *);
 
 #endif
