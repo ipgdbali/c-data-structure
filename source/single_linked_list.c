@@ -2,12 +2,14 @@
 
 struct tSingleLinkedList * sll_init()
 {
-	struct tSingleLinkedList * sll;
-	sll = (struct tSingleLinkedList *)malloc(sizeof(struct tSingleLinkedList));
-	sll->nNodeCount = 0;
-	sll->pHeadNode = NULL;
-	sll->pTailNode = NULL;
-	return sll;
+	struct tSingleLinkedList * pSLL;
+	pSLL = (struct tSingleLinkedList *)malloc(sizeof(struct tSingleLinkedList));
+	if(pSLL == NULL)
+		return NULL;
+	pSLL->nNodeCount = 0;
+	pSLL->pHeadNode = NULL;
+	pSLL->pTailNode = NULL;
+	return pSLL;
 }
 
 void sll_append(struct tSingleLinkedList *pSLL,void * pNodeData)
@@ -17,6 +19,8 @@ void sll_append(struct tSingleLinkedList *pSLL,void * pNodeData)
 	assert(pSLL != NULL);
 
 	pNode = (struct tSLLNode *)malloc(sizeof(struct tSLLNode));
+	if(pNode == NULL)
+		return;
 	pNode->pNodeData = pNodeData;
 	pNode->pNextNode = NULL;
 	if(pSLL->pTailNode != NULL)
@@ -34,6 +38,8 @@ void sll_prepend(struct tSingleLinkedList *pSLL,void *pNodeData)
 	assert(pSLL != NULL);
 
 	pNode = (struct tSLLNode *)malloc(sizeof(struct tSLLNode));
+	if(pNode == NULL)
+		return;
 	pNode->pNodeData = pNodeData;
 	if(pSLL->pHeadNode != NULL)
 		pNode->pNextNode = pSLL->pHeadNode;
@@ -87,6 +93,8 @@ void insert_after_iterator(struct tSLLIterator * pSLLIter,void * pNodeData)
 	assert(pSLLIter != NULL);
 
 	pNode = (struct tSLLNode *)malloc(sizeof(struct tSLLNode));
+	if(pNode == NULL)
+		return;
 	pNode->pNodeData = pNodeData;
 	pNode->pNextNode = pSLLIter->pNode->pNextNode;
 	pSLLIter->pNode->pNextNode = pNode;
@@ -100,6 +108,8 @@ struct tSLLIterator * sll_iterator_init(struct tSingleLinkedList * pSLL)
 	struct tSLLIterator *pSLLIter;
 
 	pSLLIter = (struct tSLLIterator *)malloc(sizeof(struct tSLLIterator));
+	if(pSLLIter == NULL)
+		return NULL;
 	pSLLIter->pSLL = pSLL;
 	pSLLIter->pNode = pSLL->pHeadNode;
 	return pSLLIter;
