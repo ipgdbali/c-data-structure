@@ -1,32 +1,28 @@
-#include "single_linked_list.h"
 #include <stdio.h>
+#include "single_linked_list.h"
 
 int main(int argc,char * argv[])
 {
 	struct tSingleLinkedList	*pSLL;
-	struct tSLLIterator				*pCursor;
-	struct tSLLIterator				*pcsTmp;
 
 	pSLL = sll_init();
 
-	for(int li = 0;li < 100;li++)
-	{
-		int * tmp = (int *) malloc(sizeof(int));
-		(*tmp) = li + 1;
-		sll_append_head(pSLL,(void*)tmp);
-	}
+	for(int li = 1;li <= 100;li++)
+		sll_append(pSLL,&li,sizeof(int));
 
-	pCursor = sll_iterator_init(pSLL);
+	printf("Node Count = %d\n",sll_node_count(pSLL));
 
-	while(!sll_iterator_has_end(pCursor))
+	for(int li = 0;li< 100 ;li++)
 	{
-		printf("%d ",*(int*)sll_iterator_get_data(pCursor));
-		pCursor = sll_iterator_next(pCursor);
+		int val;
+		sll_peek_head(pSLL,&val,NULL);
+		printf("%3d ",val);
+		if(val % 30 == 0)
+			printf("\n");
+		sll_pop_head(pSLL);
 	}
 
 	printf("\n");
-
-	sll_iterator_destroy(pCursor);
 	sll_destroy(pSLL);
 
 	return 0;
