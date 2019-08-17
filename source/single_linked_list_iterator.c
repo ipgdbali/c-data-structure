@@ -65,7 +65,7 @@ void const * const sll_iterator_peek_curr(struct tSLLIterator * pSLLIter)
 	if(pSLLIter->pNode != NULL)
 		return pSLLIter->pNode->pNodeData;
 	else
-		return NULL:
+		return NULL;
 }
 
 void const * const sll_iterator_peek_prev(struct tSLLIterator * pSLLIter)
@@ -111,7 +111,7 @@ void sll_iterator_insert_after(struct tSLLIterator * pSLLIter,void const * const
 	pSLLIter->pSLL->nNodeCount++;
 }
 
-void sll_iterator_insert_before(struct tSLLIterator * pSLLIter,void const * const pNodeData,size_t)
+void sll_iterator_insert_before(struct tSLLIterator * pSLLIter,void const * const pNodeData,size_t size)
 {
 	struct tSLLNode * pNode;
 	assert(pSLLIter != NULL);
@@ -121,7 +121,7 @@ void sll_iterator_insert_before(struct tSLLIterator * pSLLIter,void const * cons
 	memcpy(pNode->pNodeData,pNodeData,pNode->szNodeData);
 
 	if(sll_iterator_is_first(pSLLIter))
-		sll_prepend(pNodeData);
+		sll_prepend(pSLLIter->pSLL,pNodeData,size);
 	else
 	{
 		pSLLIter->pPrevNode->pNextNode = pNode;
