@@ -27,22 +27,17 @@ extern struct tSingleLinkedList * sll_init();
 /*
  * Appending Node to after tail
  */
-extern void sll_append(struct tSingleLinkedList *,void *,size_t);
+extern void sll_append(struct tSingleLinkedList *,void const * const,size_t);
 /*
  * Prepending Node Before Head
  */
-extern void sll_prepend(struct tSingleLinkedList *,void *,size_t);
+extern void sll_prepend(struct tSingleLinkedList *,void const * const ,size_t);
 
 /*
  * Poping Head Node
  */
 extern bool sll_pop_head(struct tSingleLinkedList *);
 
-/*
- * Peek Head Node
- * if void * is NULL then size_t fill with size only
- */
-extern bool sll_peek_head(struct tSingleLinkedList *,void *,size_t *);
 /*
  * Counting Node
  */

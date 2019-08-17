@@ -12,7 +12,7 @@ struct tSingleLinkedList * sll_init()
 	return pSLL;
 }
 
-void sll_append(struct tSingleLinkedList *pSLL,void * pNodeData,size_t size)
+void sll_append(struct tSingleLinkedList *pSLL,void const * const pNodeData,size_t size)
 {
 	struct tSLLNode * pNode;
 
@@ -35,7 +35,7 @@ void sll_append(struct tSingleLinkedList *pSLL,void * pNodeData,size_t size)
 	pSLL->nNodeCount++;
 }
 
-void sll_prepend(struct tSingleLinkedList *pSLL,void *pNodeData,size_t size)
+void sll_prepend(struct tSingleLinkedList *pSLL,void const * const pNodeData,size_t size)
 {
 	struct tSLLNode * pNode;
 
@@ -76,24 +76,6 @@ bool sll_pop_head(struct tSingleLinkedList *pSLL)
 	}
 	else
 		return false;
-}
-
-bool sll_peek_head(struct tSingleLinkedList * pSLL,void * pNodeData,size_t *size)
-{
-	if(pSLL->pHeadNode != NULL)
-	{
-		if(pNodeData != NULL)
-			memcpy(pNodeData,pSLL->pHeadNode->pNodeData,pSLL->pHeadNode->szNodeData);
-		if( size != NULL )
-			(*size) = pSLL->pHeadNode->szNodeData;
-		return true;
-	}
-	else
-	{
-		if(size != NULL)
-			(*size) = 0;
-		return false;
-	}
 }
 
 size_t sll_node_count(struct tSingleLinkedList *pSLL)

@@ -7,6 +7,7 @@ struct tSLLIterator
 {
 	struct tSingleLinkedList	* pSLL;
 	struct tSLLNode				* pNode;
+	struct tSLLNode				* pPrevNode;
 };
 
 /*
@@ -23,13 +24,17 @@ extern struct tSLLIterator * sll_iterator_reset(struct tSLLIterator *);
  */
 extern struct tSLLIterator * sll_iterator_next(struct tSLLIterator *);
 /*
- * Check Iterator Position to Last Node
+ * Check Iterator Position to First Node / Head Node
+ */
+extern bool sll_iterator_is_first(struct tSLLIterator *);
+/*
+ * Check Iterator Position to Last Node / Tail Node
  */
 extern bool sll_iterator_is_last(struct tSLLIterator *);
 /*
- * Iterator has pass Last Node
+ * Iterator is null
  */
-extern bool sll_iterator_has_end(struct tSLLIterator *);
+extern bool sll_iterator_is_null(struct tSLLIterator *);
 /*
  * Set Data for Node pointed by Iterator
  */
@@ -39,6 +44,18 @@ extern void sll_iterator_set_data(struct tSLLIterator *,void *,size_t);
  */
 extern void sll_iterator_get_data(struct tSLLIterator *,void *,size_t *);
 /*
+ * Return Const Pointer Data of Current Node
+ */
+extern void const * const sll_iterator_peek_curr(struct tSLLIterator *);
+/*
+ * Return Const Pointer Data of Current Node
+ */
+extern void const * const sll_iterator_peek_prev(struct tSLLIterator *);
+/*
+ * Return Const Pointer Data of Next Node
+ */
+extern void const * const sll_iterator_peek_next(struct tSLLIterator *);
+/*
  * Destroy Iterator
  */
 extern void sll_iterator_destroy(struct tSLLIterator *);
@@ -46,6 +63,11 @@ extern void sll_iterator_destroy(struct tSLLIterator *);
 /*
  * Insert Node after node pointed by iterator
  */
-extern void insert_after_iterator(struct tSLLIterator *,void *,size_t);
+extern void insert_after_iterator(struct tSLLIterator *,void const * const,size_t);
+/*
+ * Insert Node before Node  pointed by iterator
+ */
+extern void insert_before_iterator(struct tSLLIterator *,void const * const, size_t);
+
 
 #endif
