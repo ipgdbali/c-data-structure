@@ -63,11 +63,11 @@ extern void sll_iterator_destroy(struct tSLLIterator *);
 /*
  * Insert Node after node pointed by iterator
  */
-extern void insert_after_iterator(struct tSLLIterator *,void const * const,size_t);
+extern void sll_iterator_insert_after(struct tSLLIterator *,void const * const,size_t);
 /*
  * Insert Node before Node  pointed by iterator
  */
-extern void insert_before_iterator(struct tSLLIterator *,void const * const, size_t);
+extern void sll_iterator_insert_before(struct tSLLIterator *,void const * const, size_t);
 
 
 #endif

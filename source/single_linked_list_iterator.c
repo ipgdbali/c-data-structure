@@ -90,7 +90,7 @@ void sll_iterator_destroy(struct tSLLIterator * pSLLIter)
 		free(pSLLIter);
 }
 
-void insert_after_iterator(struct tSLLIterator * pSLLIter,void const * const pNodeData,size_t size)
+void sll_iterator_insert_after(struct tSLLIterator * pSLLIter,void const * const pNodeData,size_t size)
 {
 	struct tSLLNode * pNode;
 
@@ -111,7 +111,7 @@ void insert_after_iterator(struct tSLLIterator * pSLLIter,void const * const pNo
 	pSLLIter->pSLL->nNodeCount++;
 }
 
-void insert_before_iterator(struct tSLLIterator * pSLLIter,void const * const pNodeData,size_t)
+void sll_iterator_insert_before(struct tSLLIterator * pSLLIter,void const * const pNodeData,size_t)
 {
 	struct tSLLNode * pNode;
 	assert(pSLLIter != NULL);
