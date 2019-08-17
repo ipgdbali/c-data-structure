@@ -8,7 +8,7 @@ All header and source code in header/ and source/ directory respetively.<br/>
 
 ## Data Structure
 Currently I'm developing these following data structures 
-- Single Linked List
+- [Single Linked List](https://github.com/ipgdbali/c-data-structure/blob/master/README.md#single-linked-list)
 - Single Linked List Iterator dependencies Single Linked List
 - Sorted List dependencies Single Linked List Iterator
 
