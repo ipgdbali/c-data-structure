@@ -1,7 +1,7 @@
 # C Data Structure
 
 This is my implementation of data structures using C Programming Language.<br/>
-It's been build and tested by me on my PC (5.2.8-arch1-1-ARCH #1 SMP PREEMPT x86_64 GNU/Linux)
+It's been build and tested by me on my PC (5.2.8-arch1-1-ARCH #1 SMP PREEMPT x86_64 GNU/Linux)<br/>
 Run make to build projects.<br/>
 Then you will have 2 build version : debug and release<br/>
 Debug has -c options to include symbol inside binary.<br/>
