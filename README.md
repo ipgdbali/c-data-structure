@@ -1,4 +1,4 @@
-# c-data-structure
+# C Data Structure
 
 This is my implementation of data structures using C Programming Language.
 Run make to build projects.
