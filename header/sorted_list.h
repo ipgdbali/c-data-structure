@@ -1,17 +1,27 @@
 #ifndef SORTED_LIST_H
 #define SORTED_LIST_H
 
-#include "single_linked_list.h"
+#include "single_linked_list_iterator.h"
 
 struct tSortedList
 {
+	bool bDuplicate;
 	struct tSingleLinkedList	*	pLinkedList;
-	struct tSLLIterator			*	pIter;
-	int (*compare_func)(void *,void*);
+	int (*cmp_func)(void const * const,void const * const);
 };
 
-extern struct tSortedList * sl_init(bool,int (*)(void *,void*));
-extern bool sl_push(struct tSortedList * ,void *);
+/*
+ * Init Sorted List
+ * Params :
+ *  - bool : allow Duplicate ?
+ *  - pointer to compare function return int
+ *    LHS < RHS : < 0
+ *    LHS = RHS : = 0
+ *    LHS > RHS : > 0
+ */
+extern struct tSortedList * sl_init(bool,int (*)(void const * const ,void const * const));
+
+extern bool sl_push(struct tSortedList * ,void const * const,size_t);
 extern struct tSLLIterator * sl_get_head_iterator(struct tSortedList *);
 
 extern void sl_destroy(struct tSortedList *);
