@@ -1,11 +1,16 @@
 # C Data Structure
 
+Hi There,
 This is my implementation of data structures using C Programming Language.<br/>
+I develop it to fill my github repo ;p and also to develop my C Programming's skill.
+
 It's been build and tested by me on my PC (5.2.8-arch1-1-ARCH #1 SMP PREEMPT x86_64 GNU/Linux)<br/>
-Run make to build projects.<br/>
-Then you will have 2 build version : debug and release<br/>
-Debug has -c options to include symbol inside binary.<br/>
-All header and source code in header/ and source/ directory respetively.<br/>
+You just need to run make on root diretory of this repo.
+Two binary version will be build which are debug and release version.
+Binary files is made inside bin directory which will be created after you run make.
+
+By sharing this project to public I hope, Public may get benefit from it.
+
 
 ## Data Structure
 Currently I'm developing these following data structures 
