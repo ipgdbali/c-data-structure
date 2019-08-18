@@ -1,6 +1,6 @@
 #include "sorted_list.h"
 
-struct tSortedList * sl_init(bool bAllowDuplicate,int (*cmp_func)(void const * const,void const * const))
+struct tSortedList * sl_init(bool bAllowDuplicate,int (*cmp_func)(void const *,void const *))
 {
 	struct 	tSortedList * pSL;
 	pSL = (struct tSortedList *)malloc(sizeof(struct tSortedList));
@@ -10,7 +10,7 @@ struct tSortedList * sl_init(bool bAllowDuplicate,int (*cmp_func)(void const * c
 	return pSL;
 }
 
-bool sl_push(struct tSortedList *pSL,void const * const pNodeData,size_t size)
+bool sl_push(struct tSortedList *pSL,void const * pNodeData,size_t size)
 {
 	struct tSLLIterator * pIter;
 
@@ -39,6 +39,11 @@ bool sl_push(struct tSortedList *pSL,void const * const pNodeData,size_t size)
 		}
 	}
 	sll_iterator_destroy(pIter);
+}
+
+struct tSortedList const * const sl_get_linked_list(struct tSortedList const * const pSortedList)
+{
+	return pSortedList;
 }
 
 void sl_destroy(struct tSortedList *pSL)

@@ -7,7 +7,7 @@ struct tSortedList
 {
 	bool bDuplicate;
 	struct tSingleLinkedList	*	pLinkedList;
-	int (*cmp_func)(void const * const,void const * const);
+	int (*cmp_func)(void const *,void const *);
 };
 
 /*
@@ -19,10 +19,11 @@ struct tSortedList
  *    LHS = RHS : = 0
  *    LHS > RHS : > 0
  */
-extern struct tSortedList * sl_init(bool,int (*)(void const * const ,void const * const));
+extern struct tSortedList * sl_init(bool,int (*)(void const *,void const *));
 
-extern bool sl_push(struct tSortedList * ,void const * const,size_t);
-extern struct tSLLIterator * sl_get_head_iterator(struct tSortedList *);
+extern bool sl_push(struct tSortedList * ,void const *,size_t);
+
+extern struct tSortedList const * const sl_get_linked_list(struct tSortedList const * const);
 
 extern void sl_destroy(struct tSortedList *);
 
