@@ -14,36 +14,47 @@ bool sl_push(struct tSortedList *pSL,void const * pNodeData,size_t size)
 {
 	struct tSLLIterator * pIter;
 
-	pIter = sll_iterator_init(pSL->pLinkedList);
-	for(pIter = sll_iterator_reset(pIter);sll_iterator_is_null(pIter);sll_iterator_next(pIter))
+	if(sll_node_count(pSL->pLinkedList) == 0 )
 	{
-
-		if(pSL->cmp_func(pNodeData,sll_iterator_peek_curr(pIter)) < 0)
-		{
-			if(sll_iterator_is_first(pIter) && pSL->bDuplicate)
-				//if node data < head data
-				sll_prepend(pSL->pLinkedList,pNodeData,size);
-		}
-		else
-		if(pSL->cmp_func(pNodeData,sll_iterator_peek_curr(pIter)) > 0)
-		{
-
-			if(
-			(
-			sll_iterator_is_last(pIter) || 	
-			pSL->cmp_func(pNodeData,sll_iterator_peek_next(pIter)) < 0
-			) && pSL->bDuplicate)
-
-				//if prev data < node data < curr data
-				sll_iterator_insert_after(pIter,pNodeData,size);
-		}
+		sll_append(pSL->pLinkedList,pNodeData,size);
 	}
-	sll_iterator_destroy(pIter);
+	else
+	{
+		pIter = sll_iterator_init(pSL->pLinkedList);
+		for(pIter = sll_iterator_reset(pIter);!sll_iterator_is_null(pIter);sll_iterator_next(pIter))
+		{
+
+			if(pSL->cmp_func(pNodeData,sll_iterator_peek_curr(pIter)) < 0)
+			{
+				if(sll_iterator_is_first(pIter))
+				{
+					//if node data < head data
+					sll_prepend(pSL->pLinkedList,pNodeData,size);
+					break;
+				}
+			}
+			else
+			if(pSL->cmp_func(pNodeData,sll_iterator_peek_curr(pIter)) > 0)
+			{
+
+				if(
+				(
+				sll_iterator_is_last(pIter) ||
+				pSL->cmp_func(pNodeData,sll_iterator_peek_next(pIter)) < 0
+				) )
+
+					//if prev data < node data < curr data
+					sll_iterator_insert_after(pIter,pNodeData,size);
+					break;
+			}
+		}
+		sll_iterator_destroy(pIter);
+	}
 }
 
-struct tSortedList const * const sl_get_linked_list(struct tSortedList const * const pSortedList)
+struct tSingleLinkedList * sl_get_linked_list(struct tSortedList const * pSortedList)
 {
-	return pSortedList;
+	return pSortedList->pLinkedList;
 }
 
 void sl_destroy(struct tSortedList *pSL)
