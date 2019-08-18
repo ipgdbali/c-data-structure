@@ -27,11 +27,11 @@ extern struct tSingleLinkedList * sll_init();
 /*
  * Appending Node to after tail
  */
-extern void sll_append(struct tSingleLinkedList *,void const * const,size_t);
+extern void sll_append(struct tSingleLinkedList *,void const *,size_t);
 /*
  * Prepending Node Before Head
  */
-extern void sll_prepend(struct tSingleLinkedList *,void const * const ,size_t);
+extern void sll_prepend(struct tSingleLinkedList *,void const * ,size_t);
 
 /*
  * Poping Head Node

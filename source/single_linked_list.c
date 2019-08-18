@@ -12,7 +12,7 @@ struct tSingleLinkedList * sll_init()
 	return pSLL;
 }
 
-void sll_append(struct tSingleLinkedList *pSLL,void const * const pNodeData,size_t size)
+void sll_append(struct tSingleLinkedList *pSLL,void const * pNodeData,size_t size)
 {
 	struct tSLLNode * pNode;
 
@@ -35,7 +35,7 @@ void sll_append(struct tSingleLinkedList *pSLL,void const * const pNodeData,size
 	pSLL->nNodeCount++;
 }
 
-void sll_prepend(struct tSingleLinkedList *pSLL,void const * const pNodeData,size_t size)
+void sll_prepend(struct tSingleLinkedList *pSLL,void const * pNodeData,size_t size)
 {
 	struct tSLLNode * pNode;
 
