@@ -19,6 +19,23 @@ Currently I'm developing these following data structures
 - [Sorted List](https://github.com/ipgdbali/c-data-structure/blob/master/README.md#sorted-list) dependencies [Single Linked List Iterator](https://github.com/ipgdbali/c-data-structure/blob/master/README.md#single-linked-list-iterator)
 
 ### Single Linked List
+Single Linked List is a way to store data in list favor.<br/>
+You can insert data into it without have to worry about its capacity or wasted memory.<br/>
+To gain its behavior,Single linked list is implemented as chain of node.<br/>
+In A Single Linked List,each single node contains of data and a pointer to next node.<br/>
+You may think it as a train where it's a chain of coaches instead of nodes<br/>
+If node doesn't have succeeding node then, pointer to next node in this node is NULL
+This last node is known as TAIL NODE.<br/>
+Whereas the first node that does not have preceeding node is called HEAD NODE.
+
+To push data into Linked List, we may push it before head (we call it prepend) or
+append after tail .<br/>
+To remove data in a Linked List, we may only remove the head node,and pointing head node to succeeding node.
+This operation is called pop<br/>
+
+By using this operations we can implement data structure queue and stack.
+
+Please look header/single_linked_list.h have more detailed function of single linked list.
 
 ### Single Linked List Iterator
 
