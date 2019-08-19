@@ -14,14 +14,14 @@ int main(int argc,char * argv[])
 	printf("Node Count = %d\n",sll_node_count(pSLL));
 
 	pSLLIter = sll_iterator_init(pSLL);
-	for(;sll_iterator_has_end(pSLLIter) != true; sll_iterator_next(pSLLIter))
+	for(sll_iterator_reset(pSLLIter);sll_iterator_is_null(pSLLIter) != true; sll_iterator_next(pSLLIter))
 	{
 		int li;
 		sll_iterator_get_data(pSLLIter,&li,NULL);
 		printf("%d ",li);
 	}
 	printf("\n");
-	for(sll_iterator_reset(pSLLIter);sll_iterator_has_end(pSLLIter) != true; sll_iterator_next(pSLLIter))
+	for(sll_iterator_reset(pSLLIter);sll_iterator_is_null(pSLLIter) != true; sll_iterator_next(pSLLIter))
 	{
 		int li;
 		sll_iterator_get_data(pSLLIter,&li,NULL);
