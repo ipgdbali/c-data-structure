@@ -2,14 +2,18 @@
 
 
 HEADER_DIR=../../header
-OBJ_DIR=../../bin
+OBJ_DIR=../../bin/debug
 
-all : test_01
+BINARY_FILES:=$(patsubst %.c,%,$(wildcard *.c))
+
+$(info $(BINARY_FILES))
+
+all : $(BINARY_FILES)
 
 % : %.c 
-	gcc -g -I$(HEADER_DIR) $< $(OBJ_DIR)/debug/sorted_list.o $(OBJ_DIR)/debug/single_linked_list_iterator.o $(OBJ_DIR)/debug/single_linked_list.o -o $@
+	gcc -g -I$(HEADER_DIR) $< $(OBJ_DIR)/sorted_list.o $(OBJ_DIR)/single_linked_list_iterator.o $(OBJ_DIR)/single_linked_list.o -o $@
 
 
 clean :
-	rm test_01
+	rm $(BINARY_FILES)
 

@@ -2,15 +2,14 @@
 #include <stdio.h>
 #include <string.h>
 
-//Sorting Ascending
-
+//Sorting descending
 
 int cmp_func(void const * const pLeft, void const * const pRight)
 {
 	char const * const strLeft = pLeft;
 	char const * const strRight = pRight;
 
-	return strcmp(pLeft,pRight);
+	return strcmp(pLeft,pRight) * -1;
 }
 
 int main(int argc,char * argv[])
