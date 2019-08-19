@@ -5,7 +5,7 @@
 
 struct tSortedList
 {
-	bool bDuplicate;
+	bool bAllowDuplicate;
 	struct tSingleLinkedList	*	pLinkedList;
 	int (*cmp_func)(void const *,void const *);
 };
@@ -21,10 +21,19 @@ struct tSortedList
  */
 extern struct tSortedList * sl_init(bool,int (*)(void const *,void const *));
 
+/*
+ * Push Data into sorted list
+ */
 extern bool sl_push(struct tSortedList * ,void const *,size_t);
 
+/*
+ * Get the sorted list
+ */
 extern struct tSingleLinkedList * sl_get_linked_list(struct tSortedList const *);
 
+/*
+ * destroy sorted list
+ */
 extern void sl_destroy(struct tSortedList *);
 
 #endif
