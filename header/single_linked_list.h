@@ -21,20 +21,25 @@ struct tSingleLinkedList
 };
 
 /*
- * Initialize Single Linked List
+ * Initialize A Single Linked List
  */
 extern struct tSingleLinkedList * sll_init();
+
 /*
- * Appending Node to after tail
+ * Appending Node after Tail Node
+ * Return false if not sucess
  */
-extern void sll_append(struct tSingleLinkedList *,void const *,size_t);
+extern bool sll_append(struct tSingleLinkedList *,void const *,size_t);
+
 /*
- * Prepending Node Before Head
+ * Prepending Node Before Head Node
+ * Return false if not sucess
  */
-extern void sll_prepend(struct tSingleLinkedList *,void const * ,size_t);
+extern bool sll_prepend(struct tSingleLinkedList *,void const * ,size_t);
 
 /*
  * Poping Head Node
+ * Return false if has no node
  */
 extern bool sll_pop_head(struct tSingleLinkedList *);
 
@@ -42,6 +47,7 @@ extern bool sll_pop_head(struct tSingleLinkedList *);
  * Counting Node
  */
 extern size_t sll_node_count(struct tSingleLinkedList *);
+
 /*
  * Destroying Single Linked List
  */

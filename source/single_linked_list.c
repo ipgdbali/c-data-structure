@@ -12,15 +12,16 @@ struct tSingleLinkedList * sll_init()
 	return pSLL;
 }
 
-void sll_append(struct tSingleLinkedList *pSLL,void const * pNodeData,size_t size)
+bool sll_append(struct tSingleLinkedList *pSLL,void const * pNodeData,size_t size)
 {
 	struct tSLLNode * pNode;
 
-	assert(pSLL != NULL);
+	if(pSLL = NULL)
+		return false;
 
 	pNode = (struct tSLLNode *)malloc(sizeof(struct tSLLNode));
 	if(pNode == NULL)
-		return;
+		return false;
 
 	//Copy Node Data
 	pNode->pNodeData = (void *)malloc(size);
@@ -33,17 +34,20 @@ void sll_append(struct tSingleLinkedList *pSLL,void const * pNodeData,size_t siz
 		pSLL->pHeadNode = pNode;
 	pSLL->pTailNode = pNode;
 	pSLL->nNodeCount++;
+
+	return true;
 }
 
-void sll_prepend(struct tSingleLinkedList *pSLL,void const * pNodeData,size_t size)
+bool sll_prepend(struct tSingleLinkedList *pSLL,void const * pNodeData,size_t size)
 {
 	struct tSLLNode * pNode;
 
-	assert(pSLL != NULL);
+	if(pSLL == NULL)
+		return false;
 
 	pNode = (struct tSLLNode *)malloc(sizeof(struct tSLLNode));
 	if(pNode == NULL)
-		return;
+		return false;
 
 	//Copy Node Data
 	pNode->pNodeData = (void *)malloc(size);
@@ -56,6 +60,7 @@ void sll_prepend(struct tSingleLinkedList *pSLL,void const * pNodeData,size_t si
 		pSLL->pTailNode = pNode;
 	pSLL->pHeadNode = pNode;
 	pSLL->nNodeCount++;
+	return true;
 }
 
 bool sll_pop_head(struct tSingleLinkedList *pSLL)
