@@ -18,6 +18,7 @@ Currently I'm developing these following data structures
 - [Single Linked List Iterator](https://github.com/ipgdbali/c-data-structure/blob/master/README.md#single-linked-list-iterator) dependencies [Single Linked List](https://github.com/ipgdbali/c-data-structure/blob/master/README.md#single-linked-list)
 - [Sorted List](https://github.com/ipgdbali/c-data-structure/blob/master/README.md#sorted-list) dependencies [Single Linked List Iterator](https://github.com/ipgdbali/c-data-structure/blob/master/README.md#single-linked-list-iterator)
 
+
 ### Single Linked List
 Single Linked List is a way to store data in list favor.<br/>
 You can insert data into it without have to worry about its capacity or wasted memory.<br/>
@@ -34,6 +35,8 @@ To remove data in a Linked List, we may only remove the head node,and pointing h
 This operation is called pop<br/>
 
 By using this operations we can implement data structure queue and stack.
+#### Stack
+#### Queue
 
 Please look [header/single_linked_list.h](https://github.com/ipgdbali/c-data-structure/blob/master/header/single_linked_list.h) to have more detailed function of my single linked list implementation
 
