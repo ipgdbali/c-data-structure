@@ -38,5 +38,15 @@ By using this operations we can implement data structure queue and stack.
 Please look header/single_linked_list.h have more detailed function of single linked list.
 
 ### Single Linked List Iterator
+Iterator allows you to visit each node from Head Node to Tail Node.
+Reseting Iterator means you move iterator to Head Node.
+for each iterator, next function is called to progress iterator to next node.
 
+Please look header/single_linked_list_iterator.h
 ### Sorted List
+While inserting new item into list,
+Sorted list will place the new item with left node < new node < right node.
+So when you iterate,you will get your list sorted.
+
+Please look at header/sorted_list.h for more info
+
