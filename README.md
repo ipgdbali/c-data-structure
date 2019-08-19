@@ -35,7 +35,7 @@ This operation is called pop<br/>
 
 By using this operations we can implement data structure queue and stack.
 
-Please look header/single_linked_list.h have more detailed function of single linked list.
+Please look [header/single_linked_list.h](https://github.com/ipgdbali/c-data-structure/blob/master/header/single_linked_list.h) to have more detailed function of my single linked list implementation
 
 ### Single Linked List Iterator
 Iterator allows you to visit each node from Head Node to Tail Node.
