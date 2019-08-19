@@ -14,7 +14,7 @@ By sharing this project to public I hope, Public may get benefit from it.
 
 ## Data Structure
 Currently I'm developing these following data structures 
-- [Single Linked List](https://github.com/ipgdbali/c-data-structure/blob/master/README.md#single-linked-list)
+- [Single Linked List](https://github.com/ipgdbali/c-data-structure/blob/master/README.md#single-linked-list) (also [Stack]() & [Queue]()
 - [Single Linked List Iterator](https://github.com/ipgdbali/c-data-structure/blob/master/README.md#single-linked-list-iterator) dependencies [Single Linked List](https://github.com/ipgdbali/c-data-structure/blob/master/README.md#single-linked-list)
 - [Sorted List](https://github.com/ipgdbali/c-data-structure/blob/master/README.md#sorted-list) dependencies [Single Linked List Iterator](https://github.com/ipgdbali/c-data-structure/blob/master/README.md#single-linked-list-iterator)
 
