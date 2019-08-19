@@ -16,7 +16,7 @@ bool sll_append(struct tSingleLinkedList *pSLL,void const * pNodeData,size_t siz
 {
 	struct tSLLNode * pNode;
 
-	if(pSLL = NULL)
+	if(pSLL == NULL)
 		return false;
 
 	pNode = (struct tSLLNode *)malloc(sizeof(struct tSLLNode));

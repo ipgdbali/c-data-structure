@@ -43,10 +43,21 @@ bool sl_push(struct tSortedList *pSL,void const * pNodeData,size_t size)
 				sll_iterator_is_last(pIter) ||
 				pSL->cmp_func(pNodeData,sll_iterator_peek_next(pIter)) < 0
 				) )
+				{
 
 					//if prev data < node data < curr data
 					sll_iterator_insert_after(pIter,pNodeData,size);
 					break;
+				}
+				else
+				if(
+				pSL->cmp_func(pNodeData,sll_iterator_peek_next(pIter)) == 0 &&
+				pSL->bAllowDuplicate)
+				{
+					//if prev data < node data < curr data
+					sll_iterator_insert_after(pIter,pNodeData,size);
+					break;
+				}
 			}
 			else
 			if	(
