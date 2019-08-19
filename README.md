@@ -42,11 +42,12 @@ Iterator allows you to visit each node from Head Node to Tail Node.
 Reseting Iterator means you move iterator to Head Node.
 for each iterator, next function is called to progress iterator to next node.
 
-Please look header/single_linked_list_iterator.h
+Please look [header/single_linked_list_iterator.h](https://github.com/ipgdbali/c-data-structure/blob/master/header/single_linked_list_iterator.h)
+
 ### Sorted List
 While inserting new item into list,
 Sorted list will place the new item with left node < new node < right node.
 So when you iterate,you will get your list sorted.
 
-Please look at header/sorted_list.h for more info
+Please look at [header/sorted_list.h](https://github.com/ipgdbali/c-data-structure/blob/master/header/sorted_list.h) for more info
 
