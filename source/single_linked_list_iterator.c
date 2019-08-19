@@ -66,14 +66,6 @@ void const  * sll_iterator_peek_curr(struct tSLLIterator * pSLLIter)
 		return NULL;
 }
 
-void const  * sll_iterator_peek_prev(struct tSLLIterator * pSLLIter)
-{
-	if(pSLLIter->pPrevNode != NULL)
-		return pSLLIter->pPrevNode->pNodeData;
-	else
-		return NULL;
-}
-
 void const  * sll_iterator_peek_next(struct tSLLIterator * pSLLIter)
 {
 	if(pSLLIter->pNode->pNextNode != NULL)

@@ -7,7 +7,6 @@ struct tSLLIterator
 {
 	struct tSingleLinkedList	* pSLL;
 	struct tSLLNode				* pNode;
-	struct tSLLNode				* pPrevNode;
 };
 
 /*
