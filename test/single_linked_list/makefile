@@ -1,19 +1,12 @@
-.PHONY: all clean
+.PHONY: all clean 
 
-all : test_01 test_02 test_03 test_04
+BINARY_FILES=$(patsubst %.c,%,$(wildcard *.c))
 
-test_01 : test_01.c 
-	gcc -I./../../header test_01.c ./../../bin/debug/single_linked_list.o -o test_01
+all : $(BINARY_FILES)
 
-test_02 : test_02.c
-	gcc -I./../../header test_02.c ./../../bin/debug/single_linked_list.o -o test_02
-
-test_03 : test_03.c
-	gcc -I./../../header test_03.c ./../../bin/debug/single_linked_list.o -o test_03
-
-test_04 : test_04.c
-	gcc -I./../../header test_04.c ./../../bin/debug/single_linked_list.o -o test_04
+% : %.c
+	gcc -I./../../header $< ./../../bin/debug/single_linked_list.o -o $@
 
 clean :
-	rm test_01 test_02 test_03 test_04
+	rm $(BINARY_FILES)
 

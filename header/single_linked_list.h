@@ -44,6 +44,16 @@ extern bool sll_prepend(struct tSingleLinkedList *,void const * ,size_t);
 extern bool sll_pop_head(struct tSingleLinkedList *);
 
 /*
+ * Get Copy oh HeadNode Data
+ */
+extern bool sll_get_head(struct tSingleLinkedList *,void *,size_t * );
+
+/*
+ * Peek Head Node
+ */
+extern void const * sll_peek_head(struct tSingleLinkedList *);
+
+/*
  * Counting Node
  */
 extern size_t sll_node_count(struct tSingleLinkedList *);

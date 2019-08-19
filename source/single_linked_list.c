@@ -83,6 +83,21 @@ bool sll_pop_head(struct tSingleLinkedList *pSLL)
 		return false;
 }
 
+bool sll_get_head(struct tSingleLinkedList *pSLL,void * pNodeData,size_t * size)
+{
+	if(pNodeData != NULL)
+		memcpy(pNodeData,pSLL->pHeadNode->pNodeData,pSLL->pHeadNode->szNodeData);
+
+	if(size != NULL)
+		*size = pSLL->pHeadNode->szNodeData;
+}
+
+void const * sll_peek_head(struct tSingleLinkedList *pSLL)
+{
+	return pSLL->pHeadNode->pNodeData;
+}
+
+
 size_t sll_node_count(struct tSingleLinkedList *pSLL)
 {
 	return pSLL->nNodeCount;

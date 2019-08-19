@@ -23,7 +23,7 @@ int main(int argc,char * argv[])
 	do
 	{
 		len++;
-		sll_peek_head(pSLL,strNama,NULL);
+		sll_get_head(pSLL,strNama,NULL);
 		printf("[%d] %s\n",len,strNama);
 	}while(sll_pop_head(pSLL));
 	sll_destroy(pSLL);

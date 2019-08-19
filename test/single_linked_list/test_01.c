@@ -15,8 +15,7 @@ int main(int argc,char * argv[])
 	for(int li = 0;li< 100 ;li++)
 	{
 		int val;
-		sll_peek_head(pSLL,&val,NULL);
-		printf("%3d ",val);
+		printf("%3d ",*(int*)sll_peek_head(pSLL));
 		if(val % 30 == 0)
 			printf("\n");
 		sll_pop_head(pSLL);
