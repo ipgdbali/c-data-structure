@@ -4,7 +4,6 @@
 
 //Sorting Ascending
 
-
 int cmp_func(void const * const pLeft, void const * const pRight)
 {
 	char const * const strLeft = pLeft;
