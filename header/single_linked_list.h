@@ -15,6 +15,7 @@ struct tSLLNode
 
 struct tSingleLinkedList
 {
+	bool				  bDeepCopy;
 	size_t				  nNodeCount;
 	struct tSLLNode		* pHeadNode;
 	struct tSLLNode		* pTailNode;
@@ -22,25 +23,31 @@ struct tSingleLinkedList
 
 /*
  * FUNCTION sll_init()
- *		Returning A Pointer to Initialized Single Linked List
+ *		Initialized A Single Linked List.
  *		Has to be destroyed with sll_destroy after used.
+ *		Data passed to Single Linked List, can be duplicated with new
+ *		allocated memory (malloc) or just copy the pointer.
  *
- *	Parameter :
+ * PARAMETER
  *	 - struct tSingleLinkedList
  *		LinkedList to be Created
  *
- *	Return
- *		bool
- *		- FALSE	: UnSuccess
- *		- TRUE	: Success
+ *	 - bool
+ *		If data to be copied put TRUE (Deep Copy).
+ *		To just copy pointer, put FALSE
+ *
+ * RETURN
+ *	 - bool
+ *		FALSE	: UnSuccess
+ *		TRUE	: Success
  */
-extern bool sll_init(struct tSingleLinkedList *);
+extern bool sll_init(struct tSingleLinkedList *,bool);
 
 /*
  * FUNCTION sll_destroy()
- *		Destroying Single Linked List
+ *		Destroying A Single Linked List
  *		Single Linked List that has been destroy cannot be used.
- *		Beside node, data inside node is also freed.
+ *		If Deep Copy is used, data inside single linked list is freed.
  *
  *  Parameters
  *		struct tSingleLinkedList
@@ -52,26 +59,30 @@ extern bool sll_init(struct tSingleLinkedList *);
 extern void sll_destroy(struct tSingleLinkedList *);
 
 /*
- * FUNCTION sll_append
- *		Appending Data to Tail Node of Single Linked List.
- *		Data will be copied to node using malloc (not just its pointer)
+ * FUNCTION 
+ *		bool sll_append(struct tSingleLinkedList *,void const * size_t)
  *
- *  Parameters
+ * DESCRIPTION
+ *		Appending Data to Tail Node of Single Linked List.
+ *
+ * PARAMETERS
  *	 - struct tSingleLinkedList
  *		Linkedlist to be appended to
+ *
  *	 - void const *
  *		data that needs to be appended
+ *
  *	 - size_t
  *		size of data that needs to be appended
  *
- *  Return 
+ * RETURN 
  *	 bool
  *	 - FALSE
  *	 	If Not Succeed
  *	 - TRUE
  *		If Succeeded
  */
-extern bool sll_append(struct tSingleLinkedList *,void const *,size_t);
+extern bool sll_append(struct tSingleLinkedList *pSLL,void * pData,size_t size);
 
 /*
  * FUNCTION sll_prepend
@@ -93,74 +104,7 @@ extern bool sll_append(struct tSingleLinkedList *,void const *,size_t);
  *	- TRUE
  *		if succeess
  */
-extern bool sll_prepend(struct tSingleLinkedList *,void const * ,size_t);
-
-/*
- * FUNCTION sll_head_data
- *		Get Copy of Tail's Data AND/OR its size.
- *		Put Buffer to NULL to get its size (only)
- *			
- *  Parameters
- *		- struct tSingleLinkedList *
- *			Pointer to tSingleLinkedList struct where this function is to operate
- *		- void *
- *			Buffer where data to be copied
- *		- size_t *
- *			Size of Buffers
- *
- *	Return : bool
- *		- TRUE	: Succeded
- *		- FALSE	: Not Succeeded
- *
- */
-extern bool sll_head_data(struct tSingleLinkedList *,void *,size_t * );
-
-/*
- * FUNCTION sll_tail_data
- *		Get Copy of Tail Data AND/OR its size.
- *		Put Buffer to NULL to get its size (only)
- *			
- *  Parameters
- *		- struct tSingleLinkedList *
- *			Pointer to tSingleLinkedList struct where this function is to operate
- *		- void *
- *			Buffer where data to be copied
- *		- size_t *
- *			Size of Buffers
- *
- *	Return : bool
- *		- TRUE	: Succeded
- *		- FALSE	: Not Succeeded
- *
- */
-extern bool sll_tail_data(struct tSingleLinkedList *,void *,size_t * );
-
-/*
- * FUNCTION sll_peek_head
- *		Peek Head Node of Single Linked List
- *
- *  Parameter
- *	 - struct tSingleLinkedList *
- *		Pointer to struct tSingleLinkedList to be peeked
- *
- *	Return void const *
- *		Pointer to Data Inside Head Node
- */
-extern void const * sll_peek_head(struct tSingleLinkedList *);
-
-/*
- * FUNCTION sll_peek_tail
- *		Peeks Tail Node of Single Linked List
- *
- *	Parameters
- *	 - struct tSingleLinkedList *
- *		Pointer to SingleLinkedList to be peeked
- *	
- *	Return : void const *
- *		Pointer to Data Inside Tail Node
- *	
- */
-extern void const * sll_peek_tail(struct tSingleLinkedList *);
+extern bool sll_prepend(struct tSingleLinkedList *pSLL,void * pData,size_t size);
 
 /*
  * FUNCTION sll_pop_head
@@ -171,13 +115,18 @@ extern void const * sll_peek_tail(struct tSingleLinkedList *);
  *		Pointer to SingleLinkedList thats needs to be popped
  *  
  *  Return : bool
- *		-FALSE	: if has no node
- *		-TRUE	: something else
+ *		-FALSE	: if there is no head node
+ *		-TRUE	: Sucess 
  */
 extern bool sll_pop_head(struct tSingleLinkedList *);
+extern bool sll_get_node_data(struct tSLLNode *pSLLNode,void *pNodeData);
+extern size_t sll_get_node_data_size(struct tSLLNode const * pSLLNode);
+extern struct tSLLNode *sll_get_head_node(struct tSingleLinkedList const * pSLL);
+extern struct tSLLNode *sll_get_tail_node(struct tSingleLinkedList const * pSLL);
+extern bool sll_get_deep_copy(struct tSingleLinkedList const * pSLL);
 
 /*
- * FUNCTION sll_node_count
+ * FUNCTION sll_get_node_count
  *		Returning Number of Node in Single Linked List
  *
  *  Parameters	:
@@ -188,7 +137,7 @@ extern bool sll_pop_head(struct tSingleLinkedList *);
  *		Number of Node in SingleLinkedList
  *			
  */
-extern size_t sll_node_count(struct tSingleLinkedList *);
+extern size_t sll_get_node_count(struct tSingleLinkedList const *);
 
 /*
  * PRIVATE FUNCTION _createNode
@@ -204,7 +153,7 @@ extern size_t sll_node_count(struct tSingleLinkedList *);
  *		Pointer to Single Linked List's Node contains with data and size
  *
  */
-extern struct tSLLNode * _createNode(void const *,size_t);
+extern struct tSLLNode * _createNode(struct tSingleLinkedList *,void *,size_t const);
 
 
 #endif
