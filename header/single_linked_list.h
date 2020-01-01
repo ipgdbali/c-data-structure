@@ -21,6 +21,8 @@ struct tSingleLinkedList
 	struct tSLLNode		* pTailNode;
 };
 
+enum eNodeKind	{eHeadNode,eTailNode};
+
 /*
  * FUNCTION sll_init()
  *		Initialized A Single Linked List.
@@ -37,11 +39,9 @@ struct tSingleLinkedList
  *		To just copy pointer, put FALSE
  *
  * RETURN
- *	 - bool
- *		FALSE	: UnSuccess
- *		TRUE	: Success
+ *		void
  */
-extern bool sll_init(struct tSingleLinkedList *,bool);
+extern void sll_init(struct tSingleLinkedList *,bool);
 
 /*
  * FUNCTION sll_destroy()
@@ -118,11 +118,27 @@ extern bool sll_prepend(struct tSingleLinkedList *pSLL,void * pData,size_t size)
  *		-FALSE	: if there is no head node
  *		-TRUE	: Sucess 
  */
+
 extern bool sll_pop_head(struct tSingleLinkedList *);
-extern bool sll_get_node_data(struct tSLLNode *pSLLNode,void *pNodeData);
-extern size_t sll_get_node_data_size(struct tSLLNode const * pSLLNode);
-extern struct tSLLNode *sll_get_head_node(struct tSingleLinkedList const * pSLL);
-extern struct tSLLNode *sll_get_tail_node(struct tSingleLinkedList const * pSLL);
+
+/*
+ *
+ *
+ *
+ */
+extern bool sll_get_node_data(struct tSingleLinkedList * pSLL,enum eNodeKind nodeKind,void **pNodeData);
+
+/*
+ *
+ *
+ *
+ */
+extern size_t sll_get_node_data_size(struct tSingleLinkedList * pSLL,enum eNodeKind nodeKind);
+
+/*
+ *
+ *
+ */
 extern bool sll_get_deep_copy(struct tSingleLinkedList const * pSLL);
 
 /*
