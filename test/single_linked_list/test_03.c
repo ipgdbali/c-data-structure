@@ -25,13 +25,12 @@ int main(int argc,char * argv[])
 
 	len = 0;
 
-	while(sll_get_node_count(&SLL) > 0)
+	do
 	{
 		len++;
 		sll_get_node_data(&SLL,eHeadNode,strNama);
 		printf("[%d] %s\n",len,strNama);
-		sll_pop_head(&SLL);
-	};
+	}while(sll_pop_head(&SLL) > 0);
 
 	sll_destroy(&SLL);
 	

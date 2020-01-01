@@ -84,7 +84,7 @@ bool sll_prepend(struct tSingleLinkedList * pSLL,const void * pNodeData,size_t s
 	return true;
 }
 
-bool sll_pop_head(struct tSingleLinkedList * pSLL)
+size_t sll_pop_head(struct tSingleLinkedList * pSLL)
 {
 	struct tSLLNode * pNode;
 
@@ -104,10 +104,9 @@ bool sll_pop_head(struct tSingleLinkedList * pSLL)
 
 		//Decrease Node Count
 		pSLL->nNodeCount--;
-		return true;
 	}
-	else
-		return false;
+
+	return pSLL->nNodeCount;
 }
 
 bool sll_get_node_data(struct tSingleLinkedList * pSLL,enum eNodeKind nodeKind,void *pNodeData)

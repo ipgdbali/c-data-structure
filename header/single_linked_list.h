@@ -114,12 +114,11 @@ extern bool sll_prepend(struct tSingleLinkedList *pSLL,const void * pData,size_t
  *	 - struct tSingleLinkedList
  *		Pointer to SingleLinkedList thats needs to be popped
  *  
- *  Return : bool
- *		-FALSE	: if there is no head node
- *		-TRUE	: Sucess 
+ *  Return : size_t
+ *		- Number of Node after Pop
  */
 
-extern bool sll_pop_head(struct tSingleLinkedList *);
+extern size_t sll_pop_head(struct tSingleLinkedList *);
 
 /*
  *
