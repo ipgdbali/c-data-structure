@@ -33,7 +33,7 @@ void sll_destroy(struct tSingleLinkedList * pSLL)
 	}
 }
 
-bool sll_append(struct tSingleLinkedList * pSLL,void * pNodeData,size_t size)
+bool sll_append(struct tSingleLinkedList * pSLL,const void * pNodeData,size_t size)
 {
 	struct tSLLNode * pNode;
 
@@ -63,7 +63,7 @@ bool sll_append(struct tSingleLinkedList * pSLL,void * pNodeData,size_t size)
 	return true;
 }
 
-bool sll_prepend(struct tSingleLinkedList * pSLL,void * pNodeData,size_t size)
+bool sll_prepend(struct tSingleLinkedList * pSLL,const void * pNodeData,size_t size)
 {
 	struct tSLLNode * pNode;
 
@@ -89,6 +89,7 @@ bool sll_pop_head(struct tSingleLinkedList * pSLL)
 	struct tSLLNode * pNode;
 
 	assert(pSLL != NULL);
+
 	if(pSLL->pHeadNode != NULL)
 	{
 		//free NodeData
@@ -109,11 +110,12 @@ bool sll_pop_head(struct tSingleLinkedList * pSLL)
 		return false;
 }
 
-bool sll_get_node_data(struct tSingleLinkedList * pSLL,enum eNodeKind nodeKind,void **pNodeData)
+bool sll_get_node_data(struct tSingleLinkedList * pSLL,enum eNodeKind nodeKind,void *pNodeData)
 {
 	struct tSLLNode *	pSLLNode;
 
 	assert(pSLL != NULL);
+
 	switch(nodeKind)
 	{
 		case eHeadNode:
@@ -124,10 +126,19 @@ bool sll_get_node_data(struct tSingleLinkedList * pSLL,enum eNodeKind nodeKind,v
 			pSLLNode = pSLL->pTailNode;
 			break;
 	}
-	if(pSLL->bDeepCopy)	
-		memcpy(*pNodeData,pSLLNode->pNodeData,pSLLNode->szNodeData);
+	if(pSLLNode != NULL)
+	{
+
+		if(pSLL->bDeepCopy)	
+			memcpy(pNodeData,pSLLNode->pNodeData,pSLLNode->szNodeData);
+		else
+			assert(true);
+
+	}
 	else
-		*pNodeData = pSLLNode->pNodeData;
+	{
+		return false;
+	}
 }
 
 size_t sll_get_node_data_size(struct tSingleLinkedList * pSLL,enum eNodeKind nodeKind)
@@ -159,7 +170,7 @@ size_t sll_get_node_count(struct tSingleLinkedList const * pSLL)
 	return pSLL->nNodeCount;
 }
 
-struct tSLLNode * _createNode(struct tSingleLinkedList *pSLL,void *pData,size_t const size)
+struct tSLLNode * _createNode(struct tSingleLinkedList *pSLL,const void *pData,size_t const size)
 {
 	struct tSLLNode *pNode;
 
@@ -178,6 +189,7 @@ struct tSLLNode * _createNode(struct tSingleLinkedList *pSLL,void *pData,size_t 
 	{
 		pNode->pNodeData = pData;
 	}
+	pNode->pNextNode = NULL;
 	pNode->szNodeData = size;
 	return pNode;
 }

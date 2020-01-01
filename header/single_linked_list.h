@@ -8,7 +8,7 @@
 
 struct tSLLNode
 {
-	void			* pNodeData;
+	const void		* pNodeData;
 	size_t			  szNodeData;
 	struct tSLLNode * pNextNode;
 };
@@ -82,7 +82,7 @@ extern void sll_destroy(struct tSingleLinkedList *);
  *	 - TRUE
  *		If Succeeded
  */
-extern bool sll_append(struct tSingleLinkedList *pSLL,void * pData,size_t size);
+extern bool sll_append(struct tSingleLinkedList *pSLL,const void * pData,size_t size);
 
 /*
  * FUNCTION sll_prepend
@@ -104,7 +104,7 @@ extern bool sll_append(struct tSingleLinkedList *pSLL,void * pData,size_t size);
  *	- TRUE
  *		if succeess
  */
-extern bool sll_prepend(struct tSingleLinkedList *pSLL,void * pData,size_t size);
+extern bool sll_prepend(struct tSingleLinkedList *pSLL,const void * pData,size_t size);
 
 /*
  * FUNCTION sll_pop_head
@@ -126,7 +126,7 @@ extern bool sll_pop_head(struct tSingleLinkedList *);
  *
  *
  */
-extern bool sll_get_node_data(struct tSingleLinkedList * pSLL,enum eNodeKind nodeKind,void **pNodeData);
+extern bool sll_get_node_data(struct tSingleLinkedList * pSLL,enum eNodeKind nodeKind,void *pNodeData);
 
 /*
  *
@@ -169,7 +169,7 @@ extern size_t sll_get_node_count(struct tSingleLinkedList const *);
  *		Pointer to Single Linked List's Node contains with data and size
  *
  */
-extern struct tSLLNode * _createNode(struct tSingleLinkedList *,void *,size_t const);
+extern struct tSLLNode * _createNode(struct tSingleLinkedList *,const void *,size_t const);
 
 
 #endif

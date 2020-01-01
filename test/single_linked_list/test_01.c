@@ -17,7 +17,7 @@ int main(int argc,char * argv[])
 		int val;
 		sll_get_node_data(&SLL,eHeadNode,&val);
 		printf("%3d ",val);
-		if(val % 30 == 0)
+		if((li + 1) % 10 == 0)
 			printf("\n");
 		sll_pop_head(&SLL);
 	}

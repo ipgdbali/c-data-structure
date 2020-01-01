@@ -3,27 +3,27 @@
 
 int main(int argc,char * argv[])
 {
-	struct tSingleLinkedList	*pSLL;
+	struct tSingleLinkedList	SLL;
 
-	pSLL = sll_init();
+	sll_init(&SLL,true);
 
 	for(int li = 1;li <= 100;li++)
-		sll_prepend(pSLL,&li,sizeof(int));
+		sll_prepend(&SLL,&li,sizeof(int));
 
-	printf("Node Count = %d\n",sll_node_count(pSLL));
+	printf("Node Count = %d\n",sll_get_node_count(&SLL));
 
 	for(int li = 0;li< 100 ;li++)
 	{
 		int val;
-		sll_get_head(pSLL,&val,NULL);
+		sll_get_node_data(&SLL,eHeadNode,&val);
 		printf("%3d ",val);
-		if(val % 30 == 0)
+		if((li + 1) % 10 == 0)
 			printf("\n");
-		sll_pop_head(pSLL);
+		sll_pop_head(&SLL);
 	}
 
 	printf("\n");
-	sll_destroy(pSLL);
+	sll_destroy(&SLL);
 
 	return 0;
 }

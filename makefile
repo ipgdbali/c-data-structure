@@ -1,4 +1,3 @@
-
 BIN_DIR := bin
 DEBUG_DIR := $(BIN_DIR)/debug
 RELEASE_DIR := $(BIN_DIR)/release

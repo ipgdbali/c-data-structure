@@ -1,12 +1,14 @@
+BIN_DIR := bin
+BIN_FILES=$(patsubst %.c,$(BIN_DIR)/%,$(wildcard *.c))
+
+$(info $(BIN_FILES))
 .PHONY: all clean 
 
-BINARY_FILES=$(patsubst %.c,%,$(wildcard *.c))
+all : $(BIN_FILES)
 
-all : $(BINARY_FILES)
-
-% : %.c
-	gcc -I./../../header $< ./../../bin/debug/single_linked_list.o -o $@
+$(BIN_DIR)/% : %.c
+	gcc -g -I./../../header $< ./../../bin/debug/single_linked_list.o -o $@
 
 clean :
-	rm $(BINARY_FILES)
+	rm $(BIN_DIR)/*
 
